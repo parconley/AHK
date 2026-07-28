@@ -8,21 +8,24 @@
 }
 
 { ;===================================TEMPORARY===================================
-    ^q::Options("raindrop")
-    ^+q::Options("elicit")
-    ^+!q::Options("connectedpapers")
-    ^e::Options("exa")
+    ; ^q::Options("") ; Taken by Windows OCR Powertool
+    ^+q::Options("gemini")
+    ^+!q::Options("etymonline")
     ^+e::Options("chatgpt")
-    ^+g::Options("ankigpt")
-    ^+h::Options("keymapgpt")
+    ^+g::Options("memgood")
+    ^+h::Options("speechify")
     ^+s::Options("claude")
     ^+b::Options("web archive")
-}
+	^y::Options("YNAB")
 
     ;assign the most popular options with separate triggers
     Options(CtrlShiftX){
             if (CtrlShiftX = ""){
                 ;w
+            }
+            if (CtrlShiftX = "speechify"){
+                Run, chrome.exe "https://app.speechify.com/" " --new-tab "
+                Return
             }
             if (CtrlShiftX = "etymonline"){
                 Run, chrome.exe "https://www.etymonline.com/" " --new-tab "
@@ -37,7 +40,7 @@
                 Return
             }
             if (CtrlShiftX = "chatgpt"){
-                Run, chrome.exe "https://chat.openai.com/?model=gpt-4" " --new-tab "
+                Run, chrome.exe "https://chat.openai.com/" " --new-tab "
                 Return
             }
             if (CtrlShiftX = "ankigpt"){
@@ -50,6 +53,14 @@
             }
             if (CtrlShiftX = "claude"){
                 Run, chrome.exe "https://claude.ai/" " --new-tab "
+                Return
+            }
+            if (CtrlShiftX = "perplexity") {
+                Run, chrome.exe "https://www.perplexity.ai/" " --new-tab "
+                Return
+            }
+            if (CtrlShfitX = "geminni") {
+                Run, chrome.exe "https://gemini.google.com/" " --new-tab "
                 Return
             }
             if (CtrlShiftX = "elicit"){
@@ -80,14 +91,28 @@
                 Run, chrome.exe "https://app.raindrop.io/" " --new-tab "
                 Return
             }
-
-        
+            if (CtrlShiftX = "NotebookLM"){
+                Run, chrome.exe "https://notebooklm.google.com/" " --new-tab "
+                Return
+            }
+			if (CtrlShiftX = "YNAB"){
+				Run, chrome.exe "https://app.ynab.com/7c01b9ed-9f08-4e81-835a-cc4acc1901df/accounts" " --new-tab "
+				Return
+			}
+			if (CtrlShiftX = "memgood"){
+				Run, chrome.exe "https://www.memgood.com/" " --new-tab "
+				Return
+			}
+ 
             if (CtrlShiftX = "web archive"){
                 Send, ^l
                 Send, ^l
                 Send, ^l
                 Send, ^c
-                Sleep, 10
+                Sleep, 200
+                Send, ^c 
+                
+                Send, ^c
                 Run, chrome.exe "https://web.archive.org/"%clipboard% " --new-tab "
                 Return
             }
@@ -113,4 +138,5 @@
             Return
     }
 
+}
 ; insperation for this comes from this video: https://www.youtube.com/watch?v=aIlssnAwK3M&list=WL&index=1&t=185s
